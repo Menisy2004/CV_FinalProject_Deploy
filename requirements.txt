@@ -1,8 +1,11 @@
 streamlit
 torch
 torchvision
-opencv-python
+opencv-python-headless
 matplotlib
 numpy
-Pillow
+pillow
 segment-anything
+ultralytics
+streamlit-drawable-canvas
+requests
