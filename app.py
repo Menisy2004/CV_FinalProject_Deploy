@@ -69,10 +69,11 @@ with st.sidebar:
 uploaded_file = st.file_uploader("Upload an image", type=["jpg", "png", "jpeg"])
 
 if uploaded_file:
-    image = Image.open(uploaded_file).convert("RGB")
-    image_np = np.array(image)
+    file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
+    image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)  # BGR format
+    st.image(image, channels="BGR", caption="Uploaded Image")
+    predictor.set_image(image)
 
-    predictor.set_image(image_np)
 
     # ----------------------------
     # Resize image for UI
