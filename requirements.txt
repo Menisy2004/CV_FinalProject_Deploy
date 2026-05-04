@@ -5,6 +5,7 @@ opencv-python-headless
 matplotlib
 numpy
 pillow
+gdown
 segment-anything
 ultralytics
 streamlit-drawable-canvas
