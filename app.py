@@ -10,7 +10,7 @@ from streamlit_drawable_canvas import st_canvas
 from ultralytics import YOLO
 
 MODEL_PATH = "sam_model/sam_vit_b.pth"
-URL = "https://drive.google.com/file/d/1hlApkNA72sZpososng8hg_8cX_4MIrlP/view?usp=drive_link"
+URL = "https://drive.google.com/uc?export=download&id=1hlApkNA72sZpososng8hg_8cX_4MIrlP"
 
 # Ensure the folder exists
 os.makedirs(os.path.dirname(MODEL_PATH), exist_ok=True)
