@@ -69,11 +69,15 @@ with st.sidebar:
 uploaded_file = st.file_uploader("Upload an image", type=["jpg", "png", "jpeg"])
 
 if uploaded_file:
-    file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
-    image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)  # BGR format
-    st.image(image, channels="BGR", caption="Uploaded Image")
-    predictor.set_image(image)
+    # Load image with Pillow
+    image = Image.open(uploaded_file).convert("RGB")
+    image_np = np.array(image)   # NumPy array (H, W, 3)
 
+    # Show uploaded image
+    st.image(image, caption="Uploaded Image")
+
+    # Pass NumPy array to predictor (same as before)
+    predictor.set_image(image_np)
 
     # ----------------------------
     # Resize image for UI
@@ -85,9 +89,12 @@ if uploaded_file:
     new_w = int(w * scale)
     new_h = int(h * scale)
 
-    resized_image = cv2.resize(image_np, (new_w, new_h))
+    # Resize using Pillow instead of cv2
+    resized_image = image.resize((new_w, new_h))
 
     col1, col2 = st.columns([1.2, 1])
+    col1.image(resized_image, caption="Resized Image")
+
 
     # ----------------------------
     # Canvas (Input)
