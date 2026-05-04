@@ -4,23 +4,20 @@ import torch
 import cv2
 import os
 import requests
+import gdown
 from PIL import Image
 from segment_anything import sam_model_registry, SamPredictor
 from streamlit_drawable_canvas import st_canvas
 from ultralytics import YOLO
 
 MODEL_PATH = "sam_model/sam_vit_b.pth"
-URL = "https://drive.google.com/uc?export=download&id=1hlApkNA72sZpososng8hg_8cX_4MIrlP"
+FILE_ID = "1hlApkNA72sZpososng8hg_8cX_4MIrlP"
+URL = f"https://drive.google.com/uc?id={FILE_ID}"
 
 # Ensure the folder exists
 os.makedirs(os.path.dirname(MODEL_PATH), exist_ok=True)
-
 if not os.path.exists(MODEL_PATH):
-    print("Downloading model...")
-    r = requests.get(URL, stream=True)
-    with open(MODEL_PATH, "wb") as f:
-        for chunk in r.iter_content(chunk_size=8192):
-            f.write(chunk)
+    gdown.download(URL, MODEL_PATH, quiet=False)
 
 
 # ----------------------------
