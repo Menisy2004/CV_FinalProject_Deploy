@@ -1,12 +1,12 @@
 streamlit
 torch
 torchvision
-opencv-python-headless
+opencv-python-headless==4.9.0.80
 matplotlib
 numpy
 pillow
-gdown
-segment-anything
-ultralytics
-streamlit-drawable-canvas
 requests
+ultralytics
+segment-anything
+streamlit-drawable-canvas
+gdown
